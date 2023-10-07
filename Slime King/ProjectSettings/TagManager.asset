@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -11,20 +12,20 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Background
+  - Foreground
+  - Terrain
+  - Decoration
+  - Pushable
+  - Trigger
+  - Projectile
+  - ProjectileCol
+  - ProjectileEnemy
+  - ProjectileEnemyCol
+  - Enemy
+  - PlayerColOnly
+  - Particles
   - 
   - 
   - 
