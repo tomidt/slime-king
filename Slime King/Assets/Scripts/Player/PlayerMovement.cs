@@ -8,14 +8,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementValue;
     private Vector2 prevMovementValue;
+
+    private float currentSpeed = 0f;
+    private float acc = 0.75f;          //acceleration scalar
+    private float dcc = 0.75f;          //deceleration scalar
+
     [SerializeField] private InputActionReference movement;
-
-    //TODO - change to so
-    private float maxSpeed = 4;
-    private float acceleration = 50;
-    private float deacceleration = 100;
-
-    private float currentSpeed = 0;
+    [SerializeField] private FloatValue speed;
 
     private void Awake()
     {
@@ -34,18 +33,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void move(Vector2 val)
     {
-        Debug.Log("speed : " + movementValue);
         if (val.magnitude > 0 && currentSpeed >= 0)
         {
             prevMovementValue = val;
-            currentSpeed += acceleration * maxSpeed * Time.deltaTime;
+            currentSpeed += (speed.value * acc) * speed.value * Time.fixedDeltaTime;
         }
         else
         {
-            currentSpeed -= deacceleration * maxSpeed * Time.deltaTime;
+            currentSpeed -= (speed.value * dcc) * speed.value * Time.fixedDeltaTime;
         }
-
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+        //Debug.Log("speed : " + currentSpeed);
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, speed.value);
+        //Debug.Log("speed : " + currentSpeed);
         rb.velocity = prevMovementValue * currentSpeed;
     }
 }
