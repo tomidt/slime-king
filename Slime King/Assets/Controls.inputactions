@@ -57,7 +57,7 @@
                 {
                     "name": "",
                     "id": "15146593-18d2-48a1-b55d-54a91f0362c2",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -68,7 +68,7 @@
                 {
                     "name": "",
                     "id": "ce283d50-abed-4fae-a013-bc5de92b6596",
-                    "path": "",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
