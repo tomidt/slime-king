@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50740678a89c6a43a89038e48881cbb, type: 3}
   m_Name: PrimaryAttackCooldown
   m_EditorClassIdentifier: 
-  value: 0.25
+  value: 0.6
