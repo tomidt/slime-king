@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementValue;
     private Vector2 prevMovementValue;
+    private Vector2 mouseDir;
 
     private float currentSpeed = 0f;
     private float acc = 0.75f;          //acceleration scalar
     private float dcc = 0.75f;          //deceleration scalar
 
+    //[SerializeField] private InputActionReference mouse;
     [SerializeField] private InputActionReference movement;
     [SerializeField] private FloatValue speed;
 
@@ -24,27 +26,36 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         movementValue = movement.action.ReadValue<Vector2>();
+        mouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //mouseDir = Camera.main.ScreenToWorldPoint(movement.action.ReadValue<Vector2>());
     }
 
     private void FixedUpdate()
     {
-        move(movementValue);
+        move();
+        faceMouse();
     }
 
-    private void move(Vector2 val)
+    private void move()
     {
-        if (val.magnitude > 0 && currentSpeed >= 0)
+        if (movementValue.magnitude > 0 && currentSpeed >= 0)
         {
-            prevMovementValue = val;
+            prevMovementValue = movementValue;
             currentSpeed += (speed.value * acc) * speed.value * Time.fixedDeltaTime;
         }
         else
         {
             currentSpeed -= (speed.value * dcc) * speed.value * Time.fixedDeltaTime;
         }
-        //Debug.Log("speed : " + currentSpeed);
+        
         currentSpeed = Mathf.Clamp(currentSpeed, 0, speed.value);
-        //Debug.Log("speed : " + currentSpeed);
         rb.velocity = prevMovementValue * currentSpeed;
+    }
+
+    private void faceMouse()
+    {
+        Vector2 dir = mouseDir - rb.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        rb.MoveRotation(angle);
     }
 }

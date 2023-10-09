@@ -7,6 +7,7 @@ public class PrimaryAttack : MonoBehaviour
 {
     [SerializeField] private InputActionReference primaryAttack;
     [SerializeField] private FloatValue primaryAttackCooldown;
+    [SerializeField] private GameObject projPrefab;
 
     private bool canAttack = true;
     private float currentCooldown = 0;
@@ -38,6 +39,7 @@ public class PrimaryAttack : MonoBehaviour
     private void Attack()
     {
         Debug.Log("Attacked");
+        Instantiate(projPrefab, transform.position, transform.rotation);
     }
 
 
