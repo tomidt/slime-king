@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4987581545811652022}
   m_Layer: 13
   m_Name: Hit Detection
-  m_TagString: Untagged
+  m_TagString: PlayerDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 4987581547130521793}
   m_Layer: 13
   m_Name: PlayerProjectile
-  m_TagString: Projectile
+  m_TagString: PlayerDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ Transform:
   m_Children:
   - {fileID: 4987581545811652017}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4987581547130521821
 SpriteRenderer:

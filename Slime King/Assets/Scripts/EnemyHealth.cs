@@ -2,20 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : Health
 {
     [SerializeField] private FloatValue enemyHealth;
-    [SerializeField] private CircleCollider2D hitbox;
 
-    private float health;
+    //protected int currentHealth, maxHealth;
 
     private void Awake()
     {
-        health = enemyHealth.value;
+        initalizeHealth((int) enemyHealth.value);
+        setIframes(0.25f);
     }
 
-    public void takeDamage()
+    private bool checkDead()
     {
-
+        return currentHealth <= 0;
     }
+
+    public override void damage()
+    {
+        //need to add sending damage
+        currentHealth--;
+        if(checkDead())
+        {
+            died();
+        }
+    }
+
+    public override void died()
+    {
+        if(diedEvent != null)
+        {
+            diedEvent.Invoke();
+        }
+
+        Destroy(gameObject);
+    }
+
 }
