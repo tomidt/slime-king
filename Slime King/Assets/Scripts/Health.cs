@@ -6,61 +6,63 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [Header("Health Varaibles")]
-    public UnityEvent damagedEvent, diedEvent, healedEvent;
+    public bool resetHP, useCurrentHP;
+    public float iframes;
+    public UnityEvent healthChangedEvent, diedEvent;
 
-    protected int currentHealth, maxHealth;
-    protected float iframes, cTimer;
+    [SerializeField] protected FloatValue currentHealthRefrence;
+    [SerializeField] protected FloatValue maxHealthRefrence;
+
+    protected float currentHealth, maxHealth;
+    protected float cTimer = 0;
     protected bool useIframes, isInvunerable, isDead;
 
-    public void initalizeHealth(int health)
+    private void Start()
     {
-        currentHealth = health;
-        maxHealth = health;
-    }
+        useIframes = iframes > 0;
+        isInvunerable = isDead = false;
 
-    public void setIframes(float value)
-    {
-        isDead = false;
-        if(value > 0)
-        {
-            useIframes = true;
-            isInvunerable = false;
-            iframes = value;
-            cTimer = 0;
-        }
+        if (!resetHP) return;
+
+        if (useCurrentHP)
+            currentHealthRefrence.value = maxHealthRefrence.value;
         else
-        {
-            useIframes = false;
-        }
+            currentHealth = maxHealth;
     }
  
-    public void takeDamage()
+    public void takeDamage(float val)
     {
-        if(useIframes && !isDead)
+        if (isDead) return;
+        if (useIframes && isInvunerable) return;
+
+        if (useCurrentHP)
         {
-            if (!isInvunerable)
-            {
-                invokeDamage();
-            }
+            currentHealthRefrence.value += val;
+            if (currentHealthRefrence.value <= 0)
+                died();
         }
         else
         {
-            invokeDamage();
+            currentHealth += val;
+            if (currentHealth <= 0)
+                died();
         }
+
+        if (healthChangedEvent != null)
+            healthChangedEvent.Invoke();
     }
 
-    private void invokeDamage()
+    public virtual void died()
     {
-        if(damagedEvent != null)
-        {
-            damagedEvent.Invoke();
-        }
-        damage();
+        if (diedEvent != null)
+            diedEvent.Invoke();
+
+        Destroy(gameObject);
     }
 
     protected virtual void Update()
     {
-        if(!isInvunerable) return;
+        if (!isInvunerable) return;
 
         cTimer += Time.deltaTime;
         if (cTimer >= iframes)
@@ -69,7 +71,4 @@ public class Health : MonoBehaviour
             isInvunerable = false;
         }
     }
-
-    public virtual void damage() { }
-    public virtual void died() { }
 }
