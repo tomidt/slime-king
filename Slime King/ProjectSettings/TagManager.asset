@@ -7,6 +7,8 @@ TagManager:
   - Terrain
   - Projectile
   - Enemy
+  - PlayerDamage
+  - EnemyDamage
   layers:
   - Default
   - TransparentFX
