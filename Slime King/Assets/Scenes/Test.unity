@@ -800,16 +800,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0781fb6c19340c5449d525fe51086a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedEvent:
+  resetHP: 1
+  useCurrentHP: 0
+  iframes: 0.25
+  healthChangedEvent:
     m_PersistentCalls:
       m_Calls: []
   diedEvent:
     m_PersistentCalls:
       m_Calls: []
-  healedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  enemyHealth: {fileID: 11400000, guid: f5e6b99258caaa54e91643d9529e01cd, type: 2}
+  currentHealthRefrence: {fileID: 0}
+  maxHealthRefrence: {fileID: 0}
 --- !u!212 &1325488957
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1091,5 +1092,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4987581547130521820, guid: e114e85d0a1e48942a503b048596e502, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5744697260606113896}
   m_SourcePrefab: {fileID: 100100000, guid: e114e85d0a1e48942a503b048596e502, type: 3}
+--- !u!1 &5744697260606113895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4987581547130521820, guid: e114e85d0a1e48942a503b048596e502, type: 3}
+  m_PrefabInstance: {fileID: 5744697260606113894}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5744697260606113896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5744697260606113895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772ef3f4fc5ed484c85de199e3fa28ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useConstant: 0
+  damage: 0
+  floatValueDamage: {fileID: 0}

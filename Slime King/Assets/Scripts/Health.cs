@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [Header("Health Varaibles")]
     public bool resetHP, useCurrentHP;
     public float iframes;
     public UnityEvent healthChangedEvent, diedEvent;
